@@ -21,7 +21,7 @@ export default function Profile() {
     }).then(res => {
       setIncidents(res.data)
     })
-  }, [])
+  }, [ongId])
 
   async function handleDeleteIncident(id){
     try {
@@ -48,7 +48,7 @@ export default function Profile() {
         <img src={logoImg} alt="Be The Hero"/>
         <span>Bem vinda, {ongName}</span>
 
-        <Link className="button" to='/incidentes/new'>
+        <Link className="button" to='/incidents/new'>
           Cadastras novo caso
         </Link>
         <button onClick={handleLogout} type="button">
