@@ -1,6 +1,6 @@
 import React from 'react'
 import {Feather} from '@expo/vector-icons'
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation, useRoute} from '@react-navigation/native'
 import {View, Image, TouchableOpacity, Text, Linking} from 'react-native'
 import * as MailCompose from 'expo-mail-composer'
 
@@ -9,7 +9,9 @@ import logoImg from '../../assets/logo.png'
 
 export default function Detail() {
   const navigation = useNavigation()
-  const message = 'Olá APAD, estou entrado em contato para ajudar neste caso'
+  const route = useRoute()
+  const incident = route.params.incident  
+  const message = `Olá ${incident.name}, estou entrado em contato para ajudar no caso ${incident.title}`
 
   function navigateBack(){
     navigation.goBack()
@@ -17,14 +19,14 @@ export default function Detail() {
 
   function sendMail(){
     MailCompose.composeAsync({
-      subject: 'Herói do caso: Cão da Depressão',
-      recipients: ['caiosantosfreitas@hotmail.com'],
+      subject: `Herói do caso: ${incident.title}`,
+      recipients: [incident.email],
       body: message
     })
   }
 
   function sendWhatApp(){
-    Linking.openURL(`whatsapp://send?phone=16992274373&text=${message}`)
+    Linking.openURL(`whatsapp://send?phone=${incident.whatsapp}&text=${message}`)
   }
 
   return (
@@ -39,14 +41,21 @@ export default function Detail() {
       </View>
 
       <View style={style.incident}>
-        <Text style={[styles.incidentProperty, { marginTop: 0}]}>ONG:</Text>
-        <Text style={styles.incidentValue}>APAD</Text>
+        <Text style={[styles.incidentProperty, {marginTop: 0}]}>ONG:</Text>
+        <Text style={styles.incidentValue}>
+          {incident.name} de {incident.city}/{incident.uf}
+        </Text>
 
         <Text style={styles.incidentProperty}>Caso:</Text>
-        <Text style={styles.incidentValue}>Cão da depressao</Text>
+        <Text style={styles.incidentValue}>{incident.title}</Text>
 
         <Text style={styles.incidentProperty}>Valor:</Text>
-        <Text style={styles.incidentValue}>123</Text>
+        <Text style={styles.incidentValue}>
+          {Intl.NumberFormat('pt-BT', {
+            style: 'currency', 
+            currency: 'BLR'
+          }).format(incident.value)}
+        </Text>
       </View>
 
       <View style={styles.contectBox}>
