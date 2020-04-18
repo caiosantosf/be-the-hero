@@ -1,5 +1,6 @@
-Semana Omnistack 11.0
+Desenvolvido durante a Semana Omnistack 11.0
 
-App Be The Hero
+NodeJs + Express + Knex + React + React Native
 
-Express + Knex + React + React Native
+![Web](./readme/App.png)
+![Mobile](./readme/App2.jpg)
