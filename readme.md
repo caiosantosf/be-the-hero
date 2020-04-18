@@ -1,4 +1,4 @@
-Desenvolvido durante a Semana Omnistack 11.0
+Developed during the "Semana Omnistack 11.0"
 
 NodeJs + Express + Knex + React + React Native
 
