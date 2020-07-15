@@ -3,6 +3,7 @@ const cors = require('cors')
 const { errors } = require('celebrate')
 const routes = require('./routes')
 
+//Alterando pelo VSCode
 const app = express()   
 
 app.use(cors());
