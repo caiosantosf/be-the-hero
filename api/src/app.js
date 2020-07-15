@@ -3,6 +3,7 @@ const cors = require('cors')
 const { errors } = require('celebrate')
 const routes = require('./routes')
 
+//teste
 const app = express()   
 
 app.use(cors());
